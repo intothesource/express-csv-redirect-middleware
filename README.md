@@ -18,7 +18,7 @@ ExpressJS Middleware that handles redirects from a CSV file
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import express from 'express'
-import csvRedirectMiddleware from '@intothesource/csv-redirect-middleware'
+import csvRedirectMiddleware from '@intothesource/express-csv-redirect-middleware'
 
 const csv = readFileSync(join(__dirname, 'foo.csv'))
 const app = express()
