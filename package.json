@@ -1,0 +1,38 @@
+{
+  "name": "@intothesource/express-csv-redirect-middleware",
+  "version": "1.0.0",
+  "description": "ExpressJS Middleware that handles redirects from a CSV file",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "lib/error/missing-csv.error.js",
+    "lib/error/unsupported-input.error.js",
+    "lib/get-csv.js",
+    "lib/split-columns.js",
+    "lib/split-rows.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intothesource/express-csv-redirect-middleware.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/intothesource/express-csv-redirect-middleware/issues"
+  },
+  "homepage": "https://github.com/intothesource/express-csv-redirect-middleware#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "ava": "^2.4.0",
+    "express": "^4.17.1",
+    "supertest": "^4.0.2",
+    "tsd": "^0.8.0",
+    "xo": "^0.24.0"
+  },
+  "dependencies": {}
+}
