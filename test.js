@@ -135,6 +135,11 @@ test.serial('parse target url', async t => {
 	t.is(middleware.parsed['/foo/'][1], '/bar/')
 })
 
+test.serial('ignore trailing columns', async t => {
+	const middleware = mw('/foo/\t307\t/bar/\t/bar/\t/bar/\t/bar/\t/bar/')
+	t.is(middleware.parsed['/foo/'][2], undefined)
+})
+
 // ---
 // Express
 // ---
@@ -175,6 +180,20 @@ test.serial('return 410 for /foo/ 410', async t => {
 test.serial('return 404 for /foo/ 404', async t => {
 	const app = express().use(mw('/foo/\t404'))
 	const res = await request(app).get('/foo/')
+	t.is(res.statusCode, 404)
+	t.is(res.headers.location, undefined)
+})
+
+test.serial('should use default if no statuscode was set', async t => {
+	const app = express().use(mw('/foo/\t\t/bar/'))
+	const res = await request(app).get('/foo/')
+	t.is(res.statusCode, 307)
+	t.is(res.headers.location, '/bar/')
+})
+
+test.serial('should do nothing if no new url is set', async t => {
+	const app = express().use(mw('/\t\t'))
+	const res = await request(app).get('/')
 	t.is(res.statusCode, 404)
 	t.is(res.headers.location, undefined)
 })

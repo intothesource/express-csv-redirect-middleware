@@ -21,6 +21,7 @@ function csvRedirect(csv) {
 
     const lf = '\n'
     const sep = '\t'
+    const defaultStatusCodeRedirect = 307
 
     const parsed = splitRows(lf)(csvData)
         .map(splitColumns(sep))
@@ -29,12 +30,14 @@ function csvRedirect(csv) {
 
     function csvRedirectMiddlewareHandler(req, res, next) {
         const matched = parsed[req.url]
-        if (matched) {
+        if (matched && (matched[0] || matched[1])) {
             const [statusCode, newUrl] = matched;
-            if (statusCode && newUrl) {
-                return res.redirect(statusCode, newUrl)
+            if (newUrl) {
+                const code = (statusCode || defaultStatusCodeRedirect)
+                return res.redirect(code, newUrl)
+            } else if (!newUrl && statusCode) {
+                res.status(statusCode)
             }
-            res.status(statusCode)
             return res.send()
         }
         next()
