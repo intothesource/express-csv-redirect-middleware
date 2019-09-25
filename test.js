@@ -93,9 +93,14 @@ test.serial('should be ok when string is empty', async t => {
 	t.is(middleware.csv, '')
 })
 
-test.serial.skip('should not create rule for empty string', async t => {
+test.serial('should not create rule for empty string', async t => {
 	const middleware = mw('')
 	t.is(middleware.parsed[''], undefined)
+})
+
+test.serial('should not create rule if target and destination are same', async t => {
+	const middleware = mw('/foo/\t\t/foo/')
+	t.is(middleware.parsed['/foo/'], undefined)
 })
 
 test.serial('accept plain string', async t => {
@@ -184,7 +189,7 @@ test.serial('return 404 for /foo/ 404', async t => {
 	t.is(res.headers.location, undefined)
 })
 
-test.serial('should use default if no statuscode was set', async t => {
+test.serial('should use default if no statuscode was set and target exists', async t => {
 	const app = express().use(mw('/foo/\t\t/bar/'))
 	const res = await request(app).get('/foo/')
 	t.is(res.statusCode, 307)
