@@ -1,20 +1,12 @@
 const getCsv = require('./lib/get-csv')
 const splitRows = require('./lib/split-rows')
 const splitColumns = require('./lib/split-columns')
+const withParsedStatusCode = require('./lib/with-parsed-status-code')
+const withOriginalAsKey = require('./lib/with-original-as-key')
+
+// Errors
 const MissingCsvError = require('./lib/error/missing-csv.error')
 const UnsupportedInputError = require('./lib/error/unsupported-input.error')
-
-function withParsedStatusCode() {
-    return ([originalUrl, statusCode, newUrl]) => ([
-        originalUrl, parseInt(statusCode, 10), newUrl
-    ])
-}
-
-function withOriginalAsKey() {
-    return ((rules, [originalUrl, statusCode, newUrl]) => ({
-        ...rules, [originalUrl]: [statusCode, newUrl]
-    }))
-}
 
 /**
  * @param {string} csv 

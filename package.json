@@ -10,7 +10,10 @@
     "lib/error/unsupported-input.error.js",
     "lib/get-csv.js",
     "lib/split-columns.js",
-    "lib/split-rows.js"
+    "lib/split-rows.js",
+    "lib/status-code-from-string.js",
+    "lib/with-original-as-key.js",
+    "lib/with-parsed-status-code.js"
   ],
   "scripts": {
     "test": "ava"
