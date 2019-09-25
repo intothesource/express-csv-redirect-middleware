@@ -1,6 +1,6 @@
 {
   "name": "@intothesource/express-csv-redirect-middleware",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "ExpressJS Middleware that handles redirects from a CSV file",
   "main": "index.js",
   "files": [
