@@ -11,7 +11,7 @@ interface CsvRedirectMiddleWareFunction {
     readonly parsed: { [originalUrl: string]: [number, string] };
 }
 
-declare function csvRedirect(csv: string) {
+declare function csvRedirect(csv: string | Buffer) {
     return <CsvRedirectMiddleWareFunction>function () { }
 }
 
